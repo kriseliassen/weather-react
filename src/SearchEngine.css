@@ -4,7 +4,7 @@
   padding-top: 1rem;
 }
 
-.SearchEngine #searchField {
+.SearchEngine .search-input {
   width: 55%;
   height: 42px;
   border: 1px solid #354f52;
