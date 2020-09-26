@@ -1,38 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 1pt 1pt#89b0ae;
+}
+
 .App {
-  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: #2f3e46;
+  border: 3px solid #2f3e46;
+  background: #cad2c5;
+  border-radius: 10px;
+  min-width: 400px;
+  max-width: 45%;
+  height: auto;
+  margin: 20px auto;
+  padding: 20px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.SearchEngine {
+  grid-area: 1 / 1 / 2 / 6;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.City {
+  grid-area: 2 / 1 / 3 / 6;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.WeatherNow {
+  grid-area: 3 / 1 / 4 / 6;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
+.Temperature {
+  grid-area: 3 / 1 / 4 / 4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.CurrentDetails {
+  grid-area: 3 / 4 / 4 / 6;
+}
+
+.Forecast {
+  grid-area: 4 / 1 / 5 / 6;
 }

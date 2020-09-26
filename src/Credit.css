@@ -1,0 +1,11 @@
+.Credit {
+  text-align: center;
+  font-size: 0.7rem;
+  font-family: "Poppins", sans-serif;
+  color: #2f3e46;
+}
+
+.Credit a {
+  text-decoration: none;
+  color: #2f3e46;
+}

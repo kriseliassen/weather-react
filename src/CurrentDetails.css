@@ -1,0 +1,25 @@
+.CurrentDetails {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+}
+
+.CurrentDetails ul {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #354f52;
+  border: 2px solid #354f52;
+  color: #e5e9e2;
+  text-align: center;
+  padding: 28px;
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+}
+
+.CurrentDetails li {
+  list-style: none;
+  font-size: 0.81rem;
+}

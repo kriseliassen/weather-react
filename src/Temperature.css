@@ -1,0 +1,45 @@
+.Temperature {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0 0.5rem;
+}
+
+.Temperature strong {
+  font-size: 90px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.Temperature .units {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Temperature .unitBtn {
+  background: none;
+  height: 1.9rem;
+  width: 1.9rem;
+  margin: 0.15em;
+  border: none;
+  margin-right: 5px;
+  padding: 3px;
+  transition: all 200ms ease-in-out;
+  text-align: center;
+}
+
+.Temperature .units .active {
+  font-weight: bold;
+  border: 2px solid #52796f;
+  border-radius: 50%;
+}
+
+.unitBtn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.unitBtn:focus {
+  outline: none;
+}
