@@ -27,7 +27,8 @@ export default function Forecast(props) {
     );
   } else {
     const apiKey = "84fd1cfe085aae87f6eca82b4b8c991a";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=metric`;
+    const unit = "metric";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=${unit}`;
     axios.get(apiUrl).then(handleForecastResponse);
     return null;
   }
