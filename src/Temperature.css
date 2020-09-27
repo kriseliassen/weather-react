@@ -6,9 +6,9 @@
   padding: 0.5rem 0 0.5rem;
 }
 
-.Temperature img {
-  height: 90px;
-  width: 90px;
+.Temperature canvas {
+  height: 64px;
+  width: 64px;
   justify-self: center;
   margin-right: 1.5rem;
 }

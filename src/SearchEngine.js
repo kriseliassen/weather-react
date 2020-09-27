@@ -5,6 +5,7 @@ import { faSearch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import Loader from "react-loader-spinner";
 
 import City from "./City";
+import WeatherIcon from "./WeatherIcon";
 import Temperature from "./Temperature";
 import CurrentDetails from "./CurrentDetails";
 import Forecast from "./Forecast";
@@ -22,7 +23,7 @@ export default function SearchEngine(props) {
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      iconUrl: "http://openweathermap.org/img/wn/01d@2x.png",
+      icon: response.data.weather[0].icon,
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
@@ -81,11 +82,8 @@ export default function SearchEngine(props) {
           </div>
           <div className="WeatherNow">
             <div className="Temperature">
-              <Temperature
-                iconVal={weatherData.iconUrl}
-                iconDescription={weatherData.description}
-                temperatureVal={weatherData.temperature}
-              />
+              <WeatherIcon iconVal={weatherData.icon} />
+              <Temperature temperatureVal={weatherData.temperature} />
             </div>
             <div className="CurrentDetails">
               <CurrentDetails
