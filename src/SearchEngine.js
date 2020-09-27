@@ -7,8 +7,9 @@ import Forecast from "./Forecast";
 import "./SearchEngine.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import Loader from "react-loader-spinner";
 
-export default function SearchEngine() {
+export default function SearchEngine(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
@@ -82,11 +83,10 @@ export default function SearchEngine() {
       </div>
     );
   } else {
-    let city = "Barcelona";
     const apiKey = "84fd1cfe085aae87f6eca82b4b8c991a";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
-    return "Loading...";
+    return <Loader type="Circles" color="#354f52;" height={100} width={100} />;
   }
 }

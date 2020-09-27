@@ -9,7 +9,7 @@ export default function App() {
     <div>
       <div className="App">
         <div className="SearchEngine">
-          <SearchEngine />
+          <SearchEngine defaultCity="Oslo" />
         </div>
       </div>
       <div className="Credit">
