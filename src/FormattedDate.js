@@ -28,10 +28,10 @@ export default function FormattedDate(props) {
   let date = props.date.getDate();
   let month = months[props.date.getMonth()];
   let hour = props.date.getHours();
-  let minutes = props.date.getMinutes();
   if (hour < 10) {
     hour = `0${hour}`;
   }
+  let minutes = props.date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }

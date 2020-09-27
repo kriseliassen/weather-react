@@ -14,6 +14,7 @@ import "./SearchEngine.css";
 
 export default function SearchEngine(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     setWeatherData({
@@ -30,17 +31,33 @@ export default function SearchEngine(props) {
     });
   }
 
+  function search() {
+    const apiKey = "84fd1cfe085aae87f6eca82b4b8c991a";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
   if (weatherData.ready) {
     return (
       <div>
         <div className="SearchEngine">
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               type="search"
               className="search-input"
               placeholder="Enter a city"
               autoComplete="off"
               autoFocus="on"
+              onChange={handleCityChange}
             />
             <button
               type="submit"
@@ -86,10 +103,7 @@ export default function SearchEngine(props) {
       </div>
     );
   } else {
-    const apiKey = "84fd1cfe085aae87f6eca82b4b8c991a";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return <Loader type="Circles" color="#354f52;" height={100} width={100} />;
   }
 }
