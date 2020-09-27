@@ -95,7 +95,7 @@ export default function SearchEngine(props) {
             </div>
           </div>
           <div className="Forecast">
-            <Forecast />
+            <Forecast city={weatherData.city} />
           </div>
         </div>
       </div>
