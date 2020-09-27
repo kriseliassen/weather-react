@@ -1,27 +1,92 @@
 import React, { useState } from "react";
 import axios from "axios";
+import City from "./City";
+import Temperature from "./Temperature";
+import CurrentDetails from "./CurrentDetails";
+import Forecast from "./Forecast";
 import "./SearchEngine.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function SearchEngine() {
-  return (
-    <div className="SearchEngine">
-      <form>
-        <input
-          type="search"
-          className="search-input"
-          placeholder="Enter a city"
-          autoComplete="off"
-          autoFocus="on"
-        />
-        <button type="submit" className="formBtn search-button " id="searchBtn">
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
-        <button value="Local" className="formBtn" id="currentLocationBtn">
-          <FontAwesomeIcon icon={faMapMarkerAlt} />
-        </button>
-      </form>
-    </div>
-  );
+  const [weatherData, setWeatherData] = useState({ ready: false });
+
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      city: response.data.name,
+      date: `Last updated on Sunday at 11:00`,
+      description: response.data.weather[0].description,
+      iconUrl: "http://openweathermap.org/img/wn/01d@2x.png",
+      temperature: Math.round(response.data.main.temp),
+      humidity: response.data.main.humidity,
+      wind: Math.round(response.data.wind.speed),
+      maxTemp: Math.round(response.data.main.temp_max),
+      minTemp: Math.round(response.data.main.temp_min),
+    });
+  }
+
+  if (weatherData.ready) {
+    return (
+      <div>
+        <div className="SearchEngine">
+          <form>
+            <input
+              type="search"
+              className="search-input"
+              placeholder="Enter a city"
+              autoComplete="off"
+              autoFocus="on"
+            />
+            <button
+              type="submit"
+              className="formBtn search-button "
+              id="searchBtn"
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+            <button value="Local" className="formBtn" id="currentLocationBtn">
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+            </button>
+          </form>
+        </div>
+        <div>
+          <div className="City">
+            <City
+              cityVal={weatherData.city}
+              descriptionVal={weatherData.description}
+              dateVal={weatherData.date}
+            />
+          </div>
+          <div className="WeatherNow">
+            <div className="Temperature">
+              <Temperature
+                iconVal={weatherData.iconUrl}
+                iconDescription={weatherData.description}
+                temperatureVal={weatherData.temperature}
+              />
+            </div>
+            <div className="CurrentDetails">
+              <CurrentDetails
+                humidityVal={weatherData.humidity}
+                windVal={weatherData.wind}
+                maxTempVal={weatherData.maxTemp}
+                minTempVal={weatherData.minTemp}
+              />
+            </div>
+          </div>
+          <div className="Forecast">
+            <Forecast />
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    let city = "Barcelona";
+    const apiKey = "84fd1cfe085aae87f6eca82b4b8c991a";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return "Loading...";
+  }
 }
