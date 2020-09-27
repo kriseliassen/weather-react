@@ -23,3 +23,7 @@
   list-style: none;
   font-size: 0.81rem;
 }
+
+.CurrentDetails strong {
+  font-weight: bolder;
+}

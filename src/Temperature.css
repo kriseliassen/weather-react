@@ -26,6 +26,8 @@
 }
 
 .Temperature .unitBtn {
+  text-decoration: none;
+  color: #52796f;
   background: none;
   height: 1.9rem;
   width: 1.9rem;
@@ -39,11 +41,10 @@
 
 .Temperature .units .active {
   font-weight: bold;
-  border: 2px solid #52796f;
-  border-radius: 50%;
+  border-bottom: 2px solid #52796f;
 }
 
-.unitBtn:hover {
+.inactive:hover {
   opacity: 0.8;
   cursor: pointer;
 }
