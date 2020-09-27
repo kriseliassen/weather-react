@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import Loader from "react-loader-spinner";
+
 import City from "./City";
 import Temperature from "./Temperature";
 import CurrentDetails from "./CurrentDetails";
 import Forecast from "./Forecast";
+import FormattedDate from "./FormattedDate";
+
 import "./SearchEngine.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import Loader from "react-loader-spinner";
 
 export default function SearchEngine(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -16,7 +19,7 @@ export default function SearchEngine(props) {
     setWeatherData({
       ready: true,
       city: response.data.name,
-      date: `Last updated on Sunday at 11:00`,
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       iconUrl: "http://openweathermap.org/img/wn/01d@2x.png",
       temperature: Math.round(response.data.main.temp),
@@ -56,8 +59,8 @@ export default function SearchEngine(props) {
             <City
               cityVal={weatherData.city}
               descriptionVal={weatherData.description}
-              dateVal={weatherData.date}
             />
+            <FormattedDate date={weatherData.date} />
           </div>
           <div className="WeatherNow">
             <div className="Temperature">
